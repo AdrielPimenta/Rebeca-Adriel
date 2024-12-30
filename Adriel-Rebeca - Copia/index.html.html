@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebeca e Adriel</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #fdf6f6;
+            color: #333;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #ffcccb;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        #counter {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #carousel {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.7s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .controls button {
+            pointer-events: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Adriel & Rebeca</h1>
+<p> . </p>
+        <div id="counter"></div>
+    </header>
+
+    <div id="carousel">
+        <div class="carousel-images">
+            <img src="file:///C:/Users/TI02/Desktop/Adriel-Rebeca%20-%20Copia/WhatsApp%20Image%202024-12-26%20at%2009.55.26.jpeg">
+            <img src="file:///C:/Users/TI02/Desktop/Adriel-Rebeca%20-%20Copia/f1aef008-1a4c-49e7-8ac8-0cf869555051.jfif" alt="Foto 2">
+            <img src="file:///C:/Users/TI02/Desktop/Adriel-Rebeca%20-%20Copia/WhatsApp%20Image%202024-07-08%20at%2018.58.51.jpeg" alt="Foto 3">
+            <img src="file:///C:/Users/TI02/Desktop/Adriel-Rebeca%20-%20Copia/WhatsApp%20Image%202024-07-08%20at%2018.58.51.jpeg" alt="Foto 4">
+        </div>
+        <div class="controls">
+            <button id="prev">&#8592;</button>
+            <button id="next">&#8594;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Rebeca, aqui está um pedacinho do nosso amor em formato de site.</p>
+	<p>Com amor, Adriel ❤️</p>
+    </footer>
+
+    <script>
+        // Contador de tempo
+        const startDate = new Date('2024-05-25');
+        const counter = document.getElementById('counter');
+
+        function updateCounter() {
+            const now = new Date();
+            const diffTime = now - startDate;
+
+            const years = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+            const months = now.getMonth() - startDate.getMonth() + (12 * years);
+            const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) % 30;
+            const hours = Math.floor(diffTime / (1000 * 60 * 60)) % 24;
+            const minutes = Math.floor(diffTime / (1000 * 60)) % 60;
+            const seconds = Math.floor(diffTime / 1000) % 60;
+
+            counter.textContent = `Estamos juntos há ${years} anos, ${months} meses, ${days} dias, ${hours} hrs, ${minutes} min e ${seconds} sgs!`;
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // Carrossel de imagens
+        const images = document.querySelector('.carousel-images');
+        const totalImages = document.querySelectorAll('.carousel-images img').length;
+        let currentIndex = 0;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            images.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
